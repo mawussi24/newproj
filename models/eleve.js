@@ -1,11 +1,29 @@
 const mongoose = require("mongoose");
 
-const eleveShema = new mongoose.Schema({
-    nom:{type:String, require: true},
-    prenom:{type:String, require: true},
-    date_de_naissance:{type:Date, require: true},
-    classe:{type:String, require: true},
-})
+const EleveSchema = new mongoose.Schema({
+    nom: {
+    type: String,
+    required: true
+    },
+    prenom: {
+        type: String,
+        required: true
+    },
+    date_de_naissance: {
+        type: Date,
+        required: true
+    },
+    classe: {
+        type: String,
+        required: true
+    }},
+    
+    { 
+        timestamps : true
+    }
 
-const eleve = mongoose.model('Eleve', eleveSchema);
-module.exports=Eleve;
+    );
+
+const Eleves = mongoose.model('Eleves', EleveSchema);
+
+module.exports = Eleves;
