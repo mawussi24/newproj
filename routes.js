@@ -50,18 +50,23 @@ router.get('/getEleves', function(req, res) {
         });
 });
 
-router.patch('/updEleve/:id', function(req, res){ 
-    const eleve_id = req.params.id;
+router.patch('/updEleve/:id',  function(req, res){ // Added :id in the route URL
+    
+    const eleve_id = req.params.id; // Accessing the id parameter correctly
     const updatedData = req.body;
 
-    Eleves.findByIdAndUpdate(eleve_id, updatedData, { new: true })
-        .then(updatedEleve =>{
-            if (!updatedEleve){
+    const elv =  Eleves.findById(eleve_id);
+
+ if (!elv){
                 return res.status(404).json({
                     success: false,
                     message: 'Eleve introuvable'
                 });
-            }
+                  }
+    Eleves.findByIdAndUpdate(eleve_id, updatedData, { new: true })
+        .then(updatedEleve =>{
+           
+          
             res.status(200).json({
                 success: true,
                 message: 'Eleve mis à jour avec succes ',
@@ -77,10 +82,10 @@ router.patch('/updEleve/:id', function(req, res){
         });
 });
 
-router.delete('/delEleve/:id', function(req, res){ 
-    const eleve_id = req.params.id;
+router.delete('/delEleve/:id', function(req, res){
+    const eleve_id = req.params.id; // Accessing the id parameter correctly
 
-    Eleves.findByIdAndDelete(eleve_id) 
+    Eleves.findByIdAndDelete(eleve_id)
         .then(deletedData =>{
             if (!deletedData){
                 return res.status(404).json({
