@@ -57,12 +57,12 @@ router.patch('/updEleve/:id',  function(req, res){ // Added :id in the route URL
 
     const elv =  Eleves.findById(eleve_id);
 
- if (!elv){
+ /*if (!elv){
                 return res.status(404).json({
                     success: false,
                     message: 'Eleve introuvable'
                 });
-                  }
+                  }*/
     Eleves.findByIdAndUpdate(eleve_id, updatedData, { new: true })
         .then(updatedEleve =>{
            
